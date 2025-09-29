@@ -1,0 +1,97 @@
+  990  podman --help
+  995  podman search redhat
+  996  podman pull docker.io/redhat/ubi8 
+ 1001  podman run --help
+ 1003  podman run -dit --name OS26 docker.io/redhat/ubi8:latest /bin/bash 
+ 1004  podman -s -a
+ 1005  podman -ps -a
+ 1006  podman -ps
+ 1008  podman -it OS26
+ 1009  podman login 
+ 1020  podman attach OS26
+ 1023  podman start OS26
+ 1025  podman ps -a -s
+ 1026  podman ps -s
+ 1028  podman ps -s -d
+ 1029  podman ps -s -p
+ 1030  podman ps -s -a n
+ 1031  podman ps -s -a -n
+ 1032  podman ps -s -n
+ 1033  podman ps -n
+ 1034  podman ps
+ 1035  podman ps -a -n
+ 1036  podman ps -a -d
+ 1037  podman ps -a -p
+ 1038  podman ps -a -p -d
+ 1039  podman ps -a -p -f
+ 1040  podman ps --help
+ 1041  podman ps -l
+ 1042  podman ps -p
+ 1056  podman stats OS26
+ 1058  podman exec OS26 pwd
+ 1059  podman exec OS26 ls -l 
+ 1060  podman port OS26
+ 1061  podman exec OS26 touch /home/wasim
+ 1062  podman exec OS26 touch ls -l /home
+ 1063  podman cp date OS26:/home/
+ 1064  podman exec OS26 ls -l /home
+ 1065  podman sarch rsyslog 
+ 1067  podman pull docker.io/rsyslog/rsyslog 
+ 1068  podman run -dit --name OS28 -p 3006:80 --privileged=true docker.io/rsyslog/rsyslog:latest /usr/sbin/initctl
+ 1069  podman start OS28
+ 1070  podman exec -it OS28
+ 1071  podman exec -it OS28 pwd
+ 1072  podman run -dit --name OS29 -p 3006:80 --privileged docker.io/rsyslog/rsyslog:latest /usr/sbin/initctl
+ 1073  podman run -dit --name OS30 -p 3010:80 --privileged docker.io/rsyslog/rsyslog:latest /usr/sbin/sysctl 
+ 1074  podman run -dit --name OS30 docker.io/rsyslog/rsyslog:latest
+ 1096  podman --version
+ 1098  podman create -n OS30 docker.io/rsyslog/rsyslog 
+ 1099  podman create --name OS30 docker.io/rsyslog/rsyslog 
+ 1101  podman ps -a -q
+ 1103  podman ps -
+ 1105  podman create --name OS89 -p 5234:514 -v /var/log:/var/log docker.io/rsyslog/rsyslog:latest
+ 1107  podman generate systemd --name logserver --files --user 
+ 1108  podman generate systemd --name logserver --files
+ 1109  podman generate systemd --name OS89 --files
+ 1187  podman start OS89
+ 1188  podman stop OS89
+ 1900  podman rmi $(podman images -a -q)
+ 1903  podman login status 
+ 1904  podman search rsyslog
+ 1905  podman login
+ 1906  sudo podman pull docker.io/rsyslog/rsyslog
+ 1907  podman images -a -q
+ 1909  podman images -a
+ 1910  podman login registry.redhat.io
+ 1912  sudo podman pull registry.redhat.io/rhel9/rsyslog
+ 1913  podman pull registry.redhat.io/rhel9/rsyslog
+ 1914  podman images 
+ 1915  podman run -dit --name OS30 registry.redhat.io/rhel9/rsyslog:latest 
+ 1921  podman generate systemd --name OS30 --files --new
+ 1951  podman start $(podman ps -a -q)
+ 1963  podman build -t OS88:V8 .
+ 1965  podman rm $(podman ps -a -q)
+ 1969  podman run -dit --name OS87 quay.io/centos/centos:latest
+ 1970  podman attach OS87
+ 1972  podman stop $(podman ps -a -q)
+ 1974  podman centos
+ 1975  podman search centos
+ 1976  podman pull docker.io/centos/systemd
+ 1978  podman build -t os88:v2 .
+ 1979  podman run -dit -p 8081:80 --name OS88 --privileged=true docker.io/centos/systemd:latest /usr/sbin/init 
+ 1981  podman exec -it OS88 /bin/bash
+ 1982  podman start OS87
+ 1984  podman build -t http17:25 .
+ 1985  podman run -dit -p 8084:80 --name OS84 --privileged=true localhost/http17:25 /usr/sbin/init
+ 1986  podman start OS84
+ 1987  podman inspect OS84 
+ 1988  podman logs OS84 
+ 1989  podman start -a OS84
+ 1990  podman machine status 
+ 1991  podman machine start
+ 1992  podman run -dit -p 8079:80 --name OS86 localhost/http17:25 /usr/sbin/init
+ 1993  podman start OS86
+ 2123  podman ps -a
+ 2124  podman images
+ 2125  history | grep podman
+ 2128  touch podman_cmd
