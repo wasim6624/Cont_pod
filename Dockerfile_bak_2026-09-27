@@ -1,0 +1,37 @@
+FROM redhat/ubi8
+
+RUN yum install net-tools -y
+
+RUN yum install openssh-server -y
+
+RUN yum install openssh-clients -y
+
+RUN yum install passwd -y
+
+RUN yum install sudo -y
+
+RUN yum install httpd -y
+
+RUN systemctl enable httpd
+
+RUN systemctl enable sshd
+
+CMD ["httpd", "-D", "FOREGROUND"]
+
+CMD ["sshd", "-D", "FOREGROUND"]
+
+RUN mkdir -p /var/www/html/UAE
+
+COPY "1032024.conf" "/etc/httpd/conf.d/UAE.conf"
+
+COPY "index.html" "/var/www/html/UAE/index.html"
+
+EXPOSE 82/tcp
+
+RUN useradd gc98
+
+RUN echo "786"|passwd gc98 --stdin
+
+RUN sed -i '101i gc98   ALL=(ALL)       NOPASSWD:ALL' /etc/sudoers
+
+CMD ["/usr/sbin/init"]

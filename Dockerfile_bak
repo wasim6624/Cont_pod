@@ -1,0 +1,28 @@
+FROM centos:10
+
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux-* 
+
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux-*
+
+RUN yum update -y
+
+RUN yum install net-tools -y
+
+RUN yum install openssh-server -y
+
+RUN yum install openssh-clients -y
+
+RUN yum install passwd -y
+
+RUN yum install sudo -y
+
+RUN yum install httpd -y
+
+WORKDIR /var/www/html
+
+RUN useradd gc98
+
+RUN echo "786"|passwd gc98 --stdin
+
+RUN sed -i '101i gc98   ALL=(ALL)       NOPASSWD:ALL' /etc/sudoers
+
